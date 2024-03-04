@@ -5,14 +5,13 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Project } from "@/types";
-import { ArrowDownToLine, XCircle } from "lucide-react";
+import { ArrowDownToLine, ListCollapse, XCircle } from "lucide-react";
 import {
   getReadableCategory,
   getReadableStatus,
@@ -48,7 +47,10 @@ export function ProjectDetails(props: ExtendedProject) {
     <Drawer>
       <DrawerTrigger asChild>
         <Button size={"sm"} variant="outline">
-          View Details
+          <div className="flex items-center gap-2">
+            {" "}
+            <ListCollapse size={16}/> View Details
+          </div>
         </Button>
       </DrawerTrigger>
       <DrawerContent>

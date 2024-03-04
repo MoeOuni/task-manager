@@ -38,6 +38,7 @@ import {
 } from "../ui/command";
 import { projectCategories } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { ScrollArea } from "../ui/scroll-area";
 
 const FormSchema = z.object({
   title: z.string().min(1, { message: "Please provide your project title." }),
@@ -158,27 +159,32 @@ export function AddProject() {
                             <Command>
                               <CommandInput placeholder="Search category..." />
                               <CommandEmpty>No category found.</CommandEmpty>
-                              <CommandGroup>
-                                {projectCategories.map((category) => (
-                                  <CommandItem
-                                    value={category.label}
-                                    key={category.value}
-                                    onSelect={() => {
-                                      form.setValue("category", category.value);
-                                    }}
-                                  >
-                                    <CheckIcon
-                                      className={cn(
-                                        "mr-2 h-4 w-4",
-                                        category.value === field.value
-                                          ? "opacity-100"
-                                          : "opacity-0"
-                                      )}
-                                    />
-                                    {category.label}
-                                  </CommandItem>
-                                ))}
-                              </CommandGroup>
+                              <ScrollArea className="h-72 m-2 px-4 rounded-md border">
+                                <CommandGroup>
+                                  {projectCategories.map((category) => (
+                                    <CommandItem
+                                      value={category.label}
+                                      key={category.value}
+                                      onSelect={() => {
+                                        form.setValue(
+                                          "category",
+                                          category.value
+                                        );
+                                      }}
+                                    >
+                                      <CheckIcon
+                                        className={cn(
+                                          "mr-2 h-4 w-4",
+                                          category.value === field.value
+                                            ? "opacity-100"
+                                            : "opacity-0"
+                                        )}
+                                      />
+                                      {category.label}
+                                    </CommandItem>
+                                  ))}
+                                </CommandGroup>
+                              </ScrollArea>
                             </Command>
                           </PopoverContent>
                         </Popover>

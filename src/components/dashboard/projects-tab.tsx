@@ -52,7 +52,7 @@ const ProjectsTab = (props: Props) => {
       </div>
       <div className="flex flex-col gap-4">
         {projects?.map((project) => (
-          <ProjectCard {...project} />
+          <ProjectCard {...project} disablePropsition={true} expanded={true}/>
         ))}
         {loading && (
           <>

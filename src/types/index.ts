@@ -1,6 +1,7 @@
 export type Project = {
   id: number | string | null;
   title: string;
+  type?: string;
   description: string;
   category: string | null;
   status: string | null;
@@ -26,4 +27,14 @@ export type Task = {
   dueDate?: Date;
   created_at: Date;
   finished_at?: Date;
+};
+
+export type User = {
+  id: number | string;
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  password?: string;
+  created_at?: Date;
+  updated_at?: Date;
 };

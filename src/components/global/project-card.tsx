@@ -21,8 +21,15 @@ import { Button } from "../ui/button";
 import { ProjectDetails } from "../drawers/project-details";
 import { Project } from "@/types";
 import ExpandableText from "./expandable-text";
+import { PlusCircle } from "lucide-react";
 
-const ProjectCard = (props: Project) => {
+type ExtendedProject = Project & {
+  // Add additional fields here
+  disablePropsition?: boolean;
+  expanded?: boolean;
+};
+
+const ProjectCard = (props: ExtendedProject) => {
   return (
     <Card>
       <CardHeader>
@@ -51,7 +58,17 @@ const ProjectCard = (props: Project) => {
         </CardDescription>
       </CardContent>
       <CardFooter className="flex gap-3">
-        {props?.status === "AVAILABLE" && <Button  size={'sm'}>Send A Proposition</Button>}
+        {props?.expanded && (
+          <Button size={"sm"}>
+            <div className="flex items-center gap-2">
+    
+              <PlusCircle size={16} /> New Task
+            </div>
+          </Button>
+        )}
+        {props?.status === "AVAILABLE" && !props?.disablePropsition && (
+          <Button size={"sm"}>Send A Proposition</Button>
+        )}
         <ProjectDetails {...props} projectCategories={projectCategories} />
       </CardFooter>
     </Card>
